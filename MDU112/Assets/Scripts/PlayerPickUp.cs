@@ -3,17 +3,20 @@ using System.Collections;
 
 public class PlayerPickUp : MonoBehaviour 
 {
+    public GameObject Enemy;
 
-	// Use this for initialization
 	void Start () 
     {
 	    
 	}
-	
-	// Update is called once per frame
+
 	void Update () 
     {
-	    
+        if (Input.GetButton("Jump"))
+        {
+            Enemy.transform.parent = null;
+            Rigidbody2D EnemyRigidBody = Enemy.AddComponent<Rigidbody2D>();
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D Enemy)
@@ -22,7 +25,6 @@ public class PlayerPickUp : MonoBehaviour
         {
             Debug.Log("Hit");
             Enemy.transform.parent = gameObject.transform;
-            
         }
     }
 }
